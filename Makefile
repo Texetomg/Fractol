@@ -6,7 +6,7 @@
 #    By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/25 14:21:50 by bfalmer-          #+#    #+#              #
-#    Updated: 2019/01/30 13:00:08 by bfalmer-         ###   ########.fr        #
+#    Updated: 2019/01/30 13:02:33 by bfalmer-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ minilibx_macos:
 clean:
 	/bin/rm -f src/*.o
 	make -C libft/ clean
-	make -C minilibx_macos
+	make -C minilibx_macos clean
 
 fclean: 
 	make clean
