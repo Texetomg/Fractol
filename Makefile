@@ -6,13 +6,13 @@
 #    By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/25 14:21:50 by bfalmer-          #+#    #+#              #
-#    Updated: 2019/01/25 14:23:08 by bfalmer-         ###   ########.fr        #
+#    Updated: 2019/01/30 13:00:08 by bfalmer-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 FLAGS = -Wall -Wextra -Werror -g 
-SRCS = src/main.c
+SRCS = src/main.c src/errors.c
 OBJS = $(SRCS:.c=.o)
 INC = includes/fractol.h
 FRAMEWORKS = -framework OpenGL -framework AppKit
@@ -36,7 +36,7 @@ minilibx_macos:
 	make -C minilibx_macos
 
 clean:
-	/bin/rm -f *.o
+	/bin/rm -f src/*.o
 	make -C libft/ clean
 	make -C minilibx_macos
 
