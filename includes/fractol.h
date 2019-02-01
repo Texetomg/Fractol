@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:24:42 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/01 15:04:59 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/01 15:45:41 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,7 @@ typedef	struct 	s_fractal
 void            arg_error(void);
 void            malloc_error(void);
 void            mlx_win_error(void);
+int				mandelbrot(t_fractal *fractal, int x, int y);
+void			drow_img(t_mlx_win *mlx_win, t_img *img);
 
 #endif
