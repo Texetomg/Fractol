@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:24:42 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/01 15:45:41 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/01 15:52:26 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,18 @@ typedef	struct 	s_mlx_win
 	void    	*win_ptr;	
 }				t_mlx_win;
 
-
 typedef	struct 	s_fractal
 {
-	int		color;
-	int		x0;
-	int		y0;
-	double	real;
-	double	imag;
-	double	c_real;
-	double	c_imag;
-	double	ex_real;
-	double	ex_imag;
+	int			color;
+	int			x0;
+	int			y0;
+	double		real;
+	double		imag;
+	double		c_real;
+	double		c_imag;
+	double		ex_real;
+	double		ex_imag;
 }				t_fractal;
-
 
 void            arg_error(void);
 void            malloc_error(void);

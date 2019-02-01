@@ -6,13 +6,13 @@
 #    By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/25 14:21:50 by bfalmer-          #+#    #+#              #
-#    Updated: 2019/01/30 13:02:33 by bfalmer-         ###   ########.fr        #
+#    Updated: 2019/02/01 15:49:18 by bfalmer-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 FLAGS = -Wall -Wextra -Werror -g 
-SRCS = src/main.c src/errors.c
+SRCS = src/main.c src/errors.c src/image.c src/fractals.c
 OBJS = $(SRCS:.c=.o)
 INC = includes/fractol.h
 FRAMEWORKS = -framework OpenGL -framework AppKit
