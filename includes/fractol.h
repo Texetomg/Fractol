@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:24:42 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/01 15:52:26 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/04 17:17:12 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,41 +15,55 @@
 # include "../minilibx_macos/mlx.h"
 # include "../libft/libft.h"
 # include <math.h>
-# define WDTH	1600
-# define HGHT	1200
+# include <stdio.h>
+# include <stdlib.h>
+# ifdef __APPLE__
+# include <OpenCL/opencl.h>
+# else
+# include <CL/cl.h>
+# endif
+# define WDTH	1000
+# define HGHT	1000
+# define MEM_SIZE (128)
+# define MAX_SOURCE_SIZE (0x100000)
 
-typedef struct  s_img
+typedef struct  		s_img
 {
-	void		*img_ptr;
-	void		*addr_ptr;
-	int			size_line;
-	int			endian;
-	int			bpp;
-}               t_img;
+	void    			*mlx_ptr;
+	void    			*win_ptr;
+	void				*img_ptr;
+	void				*addr_ptr;
+	int					size_line;
+	int					endian;
+	int					bpp;
+}               		t_img;
 
-typedef	struct 	s_mlx_win
+typedef	struct			s_fractal
 {
-	void    	*mlx_ptr;
-	void    	*win_ptr;	
-}				t_mlx_win;
+	int					color;
+	double				real;
+	double				imag;
+}						t_fractal;
 
-typedef	struct 	s_fractal
+typedef struct			s_kernel
 {
-	int			color;
-	int			x0;
-	int			y0;
-	double		real;
-	double		imag;
-	double		c_real;
-	double		c_imag;
-	double		ex_real;
-	double		ex_imag;
-}				t_fractal;
+	cl_device_id		device_id;
+	cl_context			context;
+	cl_command_queue	command_queue;
+	cl_mem				memobj;
+	cl_program 			program;
+	cl_kernel			kernel;
+	cl_platform_id		platform_id;
+	cl_uint				ret_num_devices;
+	cl_uint				ret_num_platforms;
+	cl_int				ret;
+}						t_kernel;
 
-void            arg_error(void);
-void            malloc_error(void);
-void            mlx_win_error(void);
-int				mandelbrot(t_fractal *fractal, int x, int y);
-void			drow_img(t_mlx_win *mlx_win, t_img *img);
+void            		arg_error(void);
+void            		malloc_error(void);
+void            		mlx_win_error(void);
+int						mandelbrot(t_fractal *fractal, int x, int y);
+void					drow_img(t_img *img);
+void     				start_kernel(t_fractal *fractal);
 
 #endif
