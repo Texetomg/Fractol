@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:24:42 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/04 17:17:12 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/05 18:36:04 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # endif
 # define WDTH	1000
 # define HGHT	1000
-# define MEM_SIZE (128)
 # define MAX_SOURCE_SIZE (0x100000)
 
 typedef struct  		s_img
@@ -59,11 +58,9 @@ typedef struct			s_kernel
 	cl_int				ret;
 }						t_kernel;
 
-void            		arg_error(void);
-void            		malloc_error(void);
-void            		mlx_win_error(void);
+void            		error(char *text);
 int						mandelbrot(t_fractal *fractal, int x, int y);
 void					drow_img(t_img *img);
-void     				start_kernel(t_fractal *fractal);
+void     				start_kernel(t_img *img);
 
 #endif

@@ -1,6 +1,5 @@
-__kernel void hello(__global int* string, int color, double real, double imag)
+__kernel void fractals(__global char* string)
 {  
-    int 	gid;
     int 	x;
     int 	y;
     int		i;
@@ -8,8 +7,12 @@ __kernel void hello(__global int* string, int color, double real, double imag)
 	double	c_imag;
 	double	ex_real;
 	double	ex_imag;
+	double	real;
+	double	imag;
+	int		color;
+	int		gid;
 
-    gid = get_global_id(0);
+	gid = get_global_id(0);
     x = gid % 1000;
     y = gid / 1000;
 	i = 0;
@@ -27,5 +30,5 @@ __kernel void hello(__global int* string, int color, double real, double imag)
 		i++;
 		color = color - 470 * 470;
 	}
-	*((int*)(string) + x + y * 1000) = color;
+	((__global unsigned int*)(string))[gid] = color;
 }
