@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:24:42 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/05 19:37:25 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/06 16:03:44 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define SIZE	WDTH*HGHT*sizeof(int)
 # define MAX_SOURCE_SIZE (0x100000)
 
-typedef struct  		s_img
+typedef	struct			s_fractal
 {
 	void    			*mlx_ptr;
 	void    			*win_ptr;
@@ -36,13 +36,11 @@ typedef struct  		s_img
 	int					size_line;
 	int					endian;
 	int					bpp;
-}               		t_img;
-
-typedef	struct			s_fractal
-{
-	int					color;
-	double				real;
-	double				imag;
+	double				x0;
+	double				y0;
+	double				x1;
+	double				y1;
+	int					iteration;
 }						t_fractal;
 
 typedef struct			s_kernel
@@ -61,7 +59,8 @@ typedef struct			s_kernel
 
 void            		error(char *text);
 int						mandelbrot(t_fractal *fractal, int x, int y);
-void					drow_img(t_img *img);
-void     				start_kernel(t_img *img, t_kernel *kernel);
+void					drow_img(t_fractal *fractal);
+void     				start_kernel(t_kernel *kernel, t_fractal *fractal);
+void					hook(t_fractal *fractal);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 17:49:05 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/05 19:38:27 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/06 16:05:23 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,13 @@ void	finalization_kernel(t_kernel *kernel)
 		error("clReleaseContext fail\n");
 }
 
-void	set_kernel_args(t_kernel *kernel)
+void	set_kernel_args(t_kernel *kernel, t_fractal *fractal)
 {
-	kernel->ret = clSetKernelArg(kernel->kernel, 0,
-					sizeof(cl_mem), &(kernel->memobj));
+	kernel->ret = clSetKernelArg(kernel->kernel, 0, sizeof(cl_mem), &(kernel->memobj));
+	kernel->ret = clSetKernelArg(kernel->kernel, 1, sizeof(double), &(fractal->x0));
+	kernel->ret = clSetKernelArg(kernel->kernel, 2, sizeof(double), &(fractal->y0));
+	kernel->ret = clSetKernelArg(kernel->kernel, 3, sizeof(double), &(fractal->x1));
+	kernel->ret = clSetKernelArg(kernel->kernel, 4, sizeof(double), &(fractal->y1));
 }
 
 void	set_components_kernel(t_kernel *kernel, char *source_str, size_t source_size)
@@ -79,7 +82,7 @@ void	set_components_kernel(t_kernel *kernel, char *source_str, size_t source_siz
 		error("clCreateKernel fail");
 }
 
-void	start_kernel(t_img *img, t_kernel *kernel)
+void	start_kernel(t_kernel *kernel, t_fractal *fractal)
 {
 	char		*string;
 	int			fd;
@@ -95,12 +98,12 @@ void	start_kernel(t_img *img, t_kernel *kernel)
 	source_size = read(fd, source_str, MAX_SOURCE_SIZE);
 	close(fd);
 	set_components_kernel(kernel, source_str, source_size);
-	set_kernel_args(kernel);	
+	set_kernel_args(kernel, fractal);	
 	if ((kernel->ret = clEnqueueNDRangeKernel(kernel->command_queue, kernel->kernel, 1, NULL, &global_work_size, NULL, 0, NULL, NULL)) != 0)
 		error("clEnqueueNDRangeKernel fail");
 	if ((kernel->ret = clEnqueueReadBuffer(kernel->command_queue, kernel->memobj, CL_TRUE, 0, SIZE,string, 0, NULL, NULL)) !=0)
 		error("clEnqueueReadBuffer fail");
-	ft_memcpy(img->addr_ptr, string, SIZE);
+	ft_memcpy(fractal->addr_ptr, string, SIZE);
 	finalization_kernel(kernel);
 	
 	free(source_str);

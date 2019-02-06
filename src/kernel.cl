@@ -1,4 +1,8 @@
-__kernel void fractals(__global char* string)
+__kernel void fractals(__global char* string,
+								double x0,
+								double y0,
+								double x1,
+								double y1)
 {  
     int 	x;
     int 	y;
@@ -17,8 +21,8 @@ __kernel void fractals(__global char* string)
     y = gid / 1000;
 	i = 0;
 	color = 0xFFFFFF;
-	c_real = ((double)(x - (1000 / 2))) / (1000 / 5);
-	c_imag = ((double)((1000 / 2) - y)) / (1000 / 5);
+	c_real = x0 + ((double)(x)) / 1000 * (x1 - x0);
+	c_imag = y1 + ((double)(y)) / 1000 * (y0 - y1);
 	real = 0;
 	imag = 0;
 	while (i < 250 && (real * real + imag * imag) <= 4)
