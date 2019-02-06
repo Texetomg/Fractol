@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image.c                                            :+:      :+:    :+:   */
+/*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/01 15:45:08 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/06 19:40:13 by bfalmer-         ###   ########.fr       */
+/*   Created: 2019/02/05 20:15:35 by bfalmer-          #+#    #+#             */
+/*   Updated: 2019/02/06 19:43:53 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	drow_img(t_fractal *fractal)
+void    hook(t_fractal *fractal)
 {
-	t_kernel	*kernel;
-
-	kernel = (t_kernel*)malloc(sizeof(t_kernel));
-	/*free*/
-	start_kernel(kernel, fractal);
-	mlx_put_image_to_window(fractal->mlx_ptr, fractal->win_ptr,
-							fractal->img_ptr, 0, 0);
+	mlx_hook(fractal->win_ptr, 2, 0, key_press, fractal);
+	mlx_hook(fractal->win_ptr, 4, 0, mouse_hook, fractal);
+	mlx_hook(fractal->win_ptr, 6, 0, mouse_move, fractal);
 }

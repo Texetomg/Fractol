@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:38:33 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/06 17:51:33 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/06 19:53:24 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	init_fractal(t_fractal *fractal, char *av)
 	fractal->y1 = -1.5;
 	fractal->x_coord = 0;
 	fractal->y_coord = 0;
+	fractal->flag = 0;
 	if (ft_strcmp(av, "mandelbrot") == 0)
 		fractal->name = 'm';
 	if (ft_strcmp(av, "julia") == 0)
