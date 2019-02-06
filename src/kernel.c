@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 17:49:05 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/06 16:05:23 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/06 17:42:23 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ void	set_kernel_args(t_kernel *kernel, t_fractal *fractal)
 	kernel->ret = clSetKernelArg(kernel->kernel, 2, sizeof(double), &(fractal->y0));
 	kernel->ret = clSetKernelArg(kernel->kernel, 3, sizeof(double), &(fractal->x1));
 	kernel->ret = clSetKernelArg(kernel->kernel, 4, sizeof(double), &(fractal->y1));
+	kernel->ret = clSetKernelArg(kernel->kernel, 5, sizeof(char), &(fractal->name));
+	kernel->ret = clSetKernelArg(kernel->kernel, 6, sizeof(double), &(fractal->x_coord));
+	kernel->ret = clSetKernelArg(kernel->kernel, 7, sizeof(double), &(fractal->y_coord));
 }
 
 void	set_components_kernel(t_kernel *kernel, char *source_str, size_t source_size)

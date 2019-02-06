@@ -1,8 +1,12 @@
+
 __kernel void fractals(__global char* string,
 								double x0,
 								double y0,
 								double x1,
-								double y1)
+								double y1,
+								char name,
+								double x_coord,
+								double y_coord)
 {  
     int 	x;
     int 	y;
@@ -17,22 +21,43 @@ __kernel void fractals(__global char* string,
 	int		gid;
 
 	gid = get_global_id(0);
-    x = gid % 1000;
-    y = gid / 1000;
-	i = 0;
+	x = gid % 1000;
+	y = gid / 1000;
 	color = 0xFFFFFF;
-	c_real = x0 + ((double)(x)) / 1000 * (x1 - x0);
-	c_imag = y1 + ((double)(y)) / 1000 * (y0 - y1);
-	real = 0;
-	imag = 0;
-	while (i < 250 && (real * real + imag * imag) <= 4)
+	if (name == 'm')
 	{
-		ex_real = real * real - imag * imag + c_real;
-		ex_imag = 2 * real * imag + c_imag;
-		real = ex_real;
-		imag = ex_imag;
-		i++;
-		color = color - 470 * 470;
+		i = 0;
+		
+		c_real = x0 + ((double)(x)) / 1000 * (x1 - x0);
+		c_imag = y1 + ((double)(y)) / 1000 * (y0 - y1);
+		real = 0;
+		imag = 0;
+		while (i < 250 && (real * real + imag * imag) <= 4)
+		{
+			ex_real = real * real - imag * imag + c_real;
+			ex_imag = 2 * real * imag + c_imag;
+			real = ex_real;
+			imag = ex_imag;
+			i++;
+			color = color - 470 * 470;
+		}
+	}
+	else if (name == 'j')
+	{	
+		i = 0;
+		real = x0 + ((double)(x)) / 1000 * (x1 - x0);
+        imag = y1 + ((double)(y)) / 1000 * (y0 - y1);
+        c_real = x_coord;
+		c_imag = y_coord;
+        while (i < 250 && (real * real + imag * imag) <= 4)
+        {
+            ex_real = real * real - imag * imag + c_real;
+            ex_imag = 2 * real * imag + c_imag;
+            real = ex_real;
+			imag = ex_imag;
+			i++;
+			color = color - 470 * 470;
+		}
 	}
 	((__global unsigned int*)(string))[gid] = color;
 }

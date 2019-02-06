@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:24:42 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/06 16:03:44 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/06 17:38:18 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ typedef	struct			s_fractal
 	double				y0;
 	double				x1;
 	double				y1;
+	double				x_coord;
+	double				y_coord;
 	int					iteration;
+	char				name;
 }						t_fractal;
 
 typedef struct			s_kernel

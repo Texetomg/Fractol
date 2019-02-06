@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 20:15:35 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/06 16:35:22 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/06 18:03:24 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,22 @@ int		mouse_hook(int key, int x, int y, t_fractal *fractal)
 	return(0);
 }
 
+int		mouse_move(int x, int y, t_fractal *fractal)
+{
+	if (fractal->name == 'j')
+	{
+		fractal->x_coord = ((double)x - 500) / 1000;
+		fractal->y_coord = ((double)y - 500) / 1000;	
+	}
+	mlx_clear_window(fractal->mlx_ptr, fractal->win_ptr);
+	drow_img(fractal);
+	ft_putchar(fractal->name);
+	return(0);
+}
+
 void    hook(t_fractal *fractal)
 {
 	mlx_hook(fractal->win_ptr, 2, 0, key_press, fractal);
-	mlx_hook(fractal->win_ptr, 4, 0, mouse_hook, fractal);	
+	mlx_hook(fractal->win_ptr, 4, 0, mouse_hook, fractal);
+	mlx_hook(fractal->win_ptr, 6, 0, mouse_move, fractal);
 }
