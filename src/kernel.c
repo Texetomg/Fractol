@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 17:49:05 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/08 16:04:20 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/08 16:31:45 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,15 @@ void	set_components_kernel(t_kernel *kernel, char *source_str,
 	kernel->context = clCreateContext(NULL,
 		1, &(kernel->device_id), NULL, NULL, &(kernel->ret));
 	if (kernel->ret != 0)
-		error("set_components_kernel2 error");
+		error("set_components_kernel error");
 	kernel->command_queue = clCreateCommandQueue(kernel->context,
 		kernel->device_id, 0, &(kernel->ret));
 	if (kernel->ret != 0)
-		error("set_components_kernel2 error");
+		error("set_components_kernel error");
 	kernel->memobj = clCreateBuffer(kernel->context,
 		CL_MEM_READ_WRITE, SIZE, NULL, &(kernel->ret));
 	if (kernel->ret != 0)
-		error("set_components_kernel2 error");
+		error("set_components_kernel error");
 	set_components_kernel2(kernel, source_str, source_size);
 }
 
@@ -101,7 +101,8 @@ void	start_kernel(t_kernel *kernel, t_fractal *fractal)
 	global_work_size = WDTH * HGHT;
 	init_kernel(kernel);
 	fd = open("src/kernel.cl", O_RDONLY);
-	source_str = (char*)malloc(MAX_SOURCE_SIZE);
+	if (!(source_str = (char*)malloc(MAX_SOURCE_SIZE)))
+		error("malloc error");
 	source_size = read(fd, source_str, MAX_SOURCE_SIZE);
 	close(fd);
 	set_components_kernel(kernel, source_str, source_size);
