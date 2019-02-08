@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 19:43:29 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/08 12:57:53 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/08 13:20:41 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,9 @@ int		key_press(int key, t_fractal *fractal)
         img_move(key, fractal);
 		mlx_clear_window(fractal->mlx_ptr, fractal->win_ptr);
 		drow_img(fractal);
-	}	
+	}
+	if (key == 89 || key == 86)
+		change_iter(key, fractal);
     if (key == 91 || key == 87)
         change_color(key, fractal);
 	if (key == 49)
