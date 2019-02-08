@@ -6,14 +6,15 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 17:49:05 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/08 16:31:45 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/08 17:38:08 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	finalization_kernel(t_kernel *kernel)
+void	finalization_kernel(t_kernel *kernel, char *string)
 {
+	free(string);
 	kernel->ret |= clFlush(kernel->command_queue);
 	kernel->ret |= clFinish(kernel->command_queue);
 	kernel->ret |= clReleaseKernel(kernel->kernel);
@@ -114,6 +115,6 @@ void	start_kernel(t_kernel *kernel, t_fractal *fractal)
 	if (kernel->ret != 0)
 		error("NDRange or ReadBuffer error");
 	ft_memcpy(fractal->addr_ptr, string, SIZE);
-	finalization_kernel(kernel);
+	finalization_kernel(kernel, string);
 	free(source_str);
 }

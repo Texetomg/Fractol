@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 15:45:08 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/08 16:23:31 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/08 17:35:36 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,5 @@ void	drow_img(t_fractal *fractal)
 				ft_itoa(fractal->iteration));
 	mlx_string_put(fractal->mlx_ptr, fractal->win_ptr, 970, 140, 0xFFFFFF,
 					"Hide menu: space");
+	init_kernel(kernel);
 }
