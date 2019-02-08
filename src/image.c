@@ -6,24 +6,11 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 15:45:08 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/08 14:50:56 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/08 15:58:13 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
-
-void	restart_fractal(t_fractal *fractal)
-{
-	fractal->x0 = -1.5;
-	fractal->y0 = 1.5;
-	fractal->x1 = 1.5;
-	fractal->y1 = -1.5;
-	fractal->x_coord = 0;
-	fractal->y_coord = 0;
-	fractal->flag = 0;
-	fractal->recolor = 10;
-	fractal->iteration = 350;
-}
 
 void	drow_img(t_fractal *fractal)
 {

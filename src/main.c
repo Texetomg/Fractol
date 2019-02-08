@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:38:33 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/08 14:53:34 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/08 15:57:51 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,6 @@ void	check_ac_av(int ac, char *av)
 	if (ft_strcmp(av, "mandelbrot") != 0 && ft_strcmp(av, "julia") != 0
 	&& ft_strcmp(av, "burningship") != 0)
 		error("Usage: <name> [mandelbrot/julia/burningship]\n");
-}
-
-void	init_fractal(t_fractal *fractal, char *av)
-{
-	restart_fractal(fractal);
-	if (ft_strcmp(av, "mandelbrot") == 0)
-		fractal->name = 'm';
-	if (ft_strcmp(av, "julia") == 0)
-		fractal->name = 'j';
-	if (ft_strcmp(av, "burningship") == 0)
-		fractal->name = 'b';
 }
 
 void	window_init(char *av)
@@ -48,7 +37,7 @@ void	window_init(char *av)
 		&(fractal->bpp), &(fractal->size_line),
 		&(fractal->endian));
 	fractal->bpp = fractal->bpp / 8;
-	init_fractal(fractal, av);
+	which_fractal(fractal, av);
 	drow_img(fractal);
 	hook(fractal);
 	mlx_loop(fractal->mlx_ptr);

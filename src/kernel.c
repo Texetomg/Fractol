@@ -6,22 +6,11 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 17:49:05 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/08 15:39:41 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/08 16:04:20 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
-
-void	init_kernel(t_kernel *kernel)
-{
-	kernel->device_id = NULL;
-	kernel->context = NULL;
-	kernel->command_queue = NULL;
-	kernel->memobj = NULL;
-	kernel->program = NULL;
-	kernel->kernel = NULL;
-	kernel->platform_id = NULL;
-}
 
 void	finalization_kernel(t_kernel *kernel)
 {
@@ -59,11 +48,27 @@ void	set_kernel_args(t_kernel *kernel, t_fractal *fractal)
 	kernel->ret |= clSetKernelArg(kernel->kernel, 9,
 		sizeof(double), &(fractal->iteration));
 	if (kernel->ret != 0)
-		error("finalization_kernel error");
+		error("set_kernel_args error");
+}
+
+void	set_components_kernel2(t_kernel *kernel, char *source_str,
+	size_t source_size)
+{
+	kernel->program = clCreateProgramWithSource(kernel->context, 1,
+		(const char **)&source_str,
+		(const size_t *)&source_size, &(kernel->ret));
+	if (kernel->ret != 0)
+		error("set_components_kernel2 error");
+	kernel->ret |= clBuildProgram(kernel->program,
+		1, &(kernel->device_id), NULL, NULL, NULL);
+	kernel->kernel = clCreateKernel(kernel->program,
+		"fractals", &(kernel->ret));
+	if (kernel->ret != 0)
+		error("set_components_kernel2 error");
 }
 
 void	set_components_kernel(t_kernel *kernel, char *source_str,
-								size_t source_size)
+	size_t source_size)
 {
 	kernel->ret |= clGetPlatformIDs(1,
 		&(kernel->platform_id), &(kernel->ret_num_platforms));
@@ -71,19 +76,17 @@ void	set_components_kernel(t_kernel *kernel, char *source_str,
 		1, &(kernel->device_id), &(kernel->ret_num_devices));
 	kernel->context = clCreateContext(NULL,
 		1, &(kernel->device_id), NULL, NULL, &(kernel->ret));
-
+	if (kernel->ret != 0)
+		error("set_components_kernel2 error");
 	kernel->command_queue = clCreateCommandQueue(kernel->context,
 		kernel->device_id, 0, &(kernel->ret));
+	if (kernel->ret != 0)
+		error("set_components_kernel2 error");
 	kernel->memobj = clCreateBuffer(kernel->context,
 		CL_MEM_READ_WRITE, SIZE, NULL, &(kernel->ret));
-	kernel->program = clCreateProgramWithSource(kernel->context, 1,
-		(const char **)&source_str, (const size_t *)&source_size, &(kernel->ret));
-	kernel->ret |= clBuildProgram(kernel->program,
-		1, &(kernel->device_id), NULL, NULL, NULL);
-	kernel->kernel = clCreateKernel(kernel->program,
-		"fractals", &(kernel->ret));
 	if (kernel->ret != 0)
-		error("finalization_kernel error");
+		error("set_components_kernel2 error");
+	set_components_kernel2(kernel, source_str, source_size);
 }
 
 void	start_kernel(t_kernel *kernel, t_fractal *fractal)
@@ -105,7 +108,7 @@ void	start_kernel(t_kernel *kernel, t_fractal *fractal)
 	set_kernel_args(kernel, fractal);
 	kernel->ret |= clEnqueueNDRangeKernel(kernel->command_queue,
 		kernel->kernel, 1, NULL, &global_work_size, NULL, 0, NULL, NULL);
-	kernel->ret = clEnqueueReadBuffer(kernel->command_queue,
+	kernel->ret |= clEnqueueReadBuffer(kernel->command_queue,
 		kernel->memobj, CL_TRUE, 0, SIZE, string, 0, NULL, NULL);
 	if (kernel->ret != 0)
 		error("NDRange or ReadBuffer error");
