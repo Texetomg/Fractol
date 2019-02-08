@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 19:42:07 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/06 19:52:36 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/08 12:59:14 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ int		mouse_move(int x, int y, t_fractal *fractal)
 	if (fractal->name == 'j' && fractal->flag == 1)
 	{
 		fractal->x_coord = ((double)x - 500) / 1000;
-		fractal->y_coord = ((double)y - 500) / 1000;	
+		fractal->y_coord = ((double)y - 500) / 1000;
+		mlx_clear_window(fractal->mlx_ptr, fractal->win_ptr);
+		drow_img(fractal);	
 	}
-	mlx_clear_window(fractal->mlx_ptr, fractal->win_ptr);
-	drow_img(fractal);
 	return(0);
 }

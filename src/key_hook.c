@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 19:43:29 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/06 20:34:56 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/08 12:57:53 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	change_iter(int key, t_fractal *fractal)
 	if (key == 86)
 		if (fractal->iteration > 1)
 			fractal->iteration--;
+	mlx_clear_window(fractal->mlx_ptr, fractal->win_ptr);
+	drow_img(fractal);
 }
 
 void    change_color(int key, t_fractal *fractal)
@@ -55,20 +57,27 @@ void    change_color(int key, t_fractal *fractal)
     if (key == 91)
         fractal->recolor = fractal->recolor + 5000;
     if (key == 87)
-        fractal->recolor = fractal->recolor - 5000; 
+        fractal->recolor = fractal->recolor - 5000;
+	mlx_clear_window(fractal->mlx_ptr, fractal->win_ptr);
+	drow_img(fractal); 
 }
 
 int		key_press(int key, t_fractal *fractal)
 {
     if (key == 123 || key == 124 || key == 125 || key == 126)
+	{
         img_move(key, fractal);
-    if (key == 86 || key == 89)
-        change_iter(key, fractal);
+		mlx_clear_window(fractal->mlx_ptr, fractal->win_ptr);
+		drow_img(fractal);
+	}	
     if (key == 91 || key == 87)
         change_color(key, fractal);
+	if (key == 49)
+	{
+        mlx_put_image_to_window(fractal->mlx_ptr, fractal->win_ptr,
+							fractal->img_ptr, 0, 0);
+	}
 	if (key == 53)
 		exit(1);
-    mlx_clear_window(fractal->mlx_ptr, fractal->win_ptr);
-	drow_img(fractal);
 	return(0);
 }

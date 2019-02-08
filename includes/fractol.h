@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:24:42 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/06 20:17:24 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/08 12:41:58 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # else
 # include <CL/cl.h>
 # endif
-# define WDTH	1000
+# define WDTH	1200
 # define HGHT	1000
 # define SIZE	WDTH*HGHT*sizeof(int)
 # define MAX_SOURCE_SIZE (0x100000)
