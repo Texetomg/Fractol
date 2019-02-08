@@ -2,7 +2,7 @@
 Computer graphics project
 fract’ol
 # Usage
-make
+make \n
 ./fractol mandelbrot
 ./fractol julia
 ./fractol burningship
