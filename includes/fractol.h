@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:24:42 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/08 12:41:58 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/08 13:58:47 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,5 @@ void					hook(t_fractal *fractal);
 int						key_press(int key, t_fractal *fractal);
 int						mouse_hook(int key, int x, int y, t_fractal *fractal);
 int						mouse_move(int x, int y, t_fractal *fractal);
+void					restart_fractal(t_fractal *fractal);
 #endif

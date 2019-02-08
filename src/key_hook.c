@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 19:43:29 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/08 13:42:25 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/08 13:59:46 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	change_fractal(int key, t_fractal *fractal)
 		fractal->name = 'j';
 	if (key == 20)
 		fractal->name = 'b';
+	restart_fractal(fractal);
 	mlx_clear_window(fractal->mlx_ptr, fractal->win_ptr);
 	drow_img(fractal); 
 }

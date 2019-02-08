@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:38:33 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/08 13:29:50 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/08 13:59:26 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,7 @@ void    check_ac_av(int ac, char *av)
 
 void	init_fractal(t_fractal *fractal, char *av)
 {
-	fractal->x0 = -1.5;
-	fractal->y0 = 1.5;
-	fractal->x1 = 1.5;
-	fractal->y1 = -1.5;
-	fractal->x_coord = 0;
-	fractal->y_coord = 0;
-	fractal->flag = 0;
-	fractal->recolor = 10;
-	fractal->iteration = 350;
+	restart_fractal(fractal);
 	if (ft_strcmp(av, "mandelbrot") == 0)
 		fractal->name = 'm';
 	if (ft_strcmp(av, "julia") == 0)
@@ -48,7 +40,7 @@ void    window_init(char *av)
 		error("malloc error");
 	if (!(fractal->mlx_ptr = mlx_init()))
 		error("mlx init error");
-	if (!(fractal->win_ptr = mlx_new_window(fractal->mlx_ptr, WDTH, HGHT, av)))
+	if (!(fractal->win_ptr = mlx_new_window(fractal->mlx_ptr, WDTH, HGHT, "fractals")))
 		error("win init error");
 	fractal->img_ptr = mlx_new_image(fractal->mlx_ptr, WDTH, HGHT);
 	fractal->addr_ptr = mlx_get_data_addr(fractal->img_ptr,
