@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 19:43:29 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/08 13:20:41 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/08 13:42:25 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,18 @@ void    change_color(int key, t_fractal *fractal)
 	drow_img(fractal); 
 }
 
+void	change_fractal(int key, t_fractal *fractal)
+{
+	if (key == 18)
+		fractal->name = 'm';
+	if (key == 19)
+		fractal->name = 'j';
+	if (key == 20)
+		fractal->name = 'b';
+	mlx_clear_window(fractal->mlx_ptr, fractal->win_ptr);
+	drow_img(fractal); 
+}
+
 int		key_press(int key, t_fractal *fractal)
 {
     if (key == 123 || key == 124 || key == 125 || key == 126)
@@ -70,6 +82,8 @@ int		key_press(int key, t_fractal *fractal)
 		mlx_clear_window(fractal->mlx_ptr, fractal->win_ptr);
 		drow_img(fractal);
 	}
+	if (key == 18 || key == 19 || key == 20)
+		change_fractal(key, fractal);
 	if (key == 89 || key == 86)
 		change_iter(key, fractal);
     if (key == 91 || key == 87)

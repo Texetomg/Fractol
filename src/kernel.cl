@@ -47,7 +47,7 @@ __kernel void fractals(__global char* string,
 	{	
 		i = 0;
 		real = x0 + ((double)(x)) / 1000 * (x1 - x0);
-        imag = y1 + ((double)(y)) / 1000 * (y0 - y1);
+        imag = y1 + ((double)(y)) / 1200 * (y0 - y1);
         c_real = x_coord;
 		c_imag = y_coord;
         while (i < iteration && (real * real + imag * imag) <= 4)
@@ -64,7 +64,7 @@ __kernel void fractals(__global char* string,
 	{
 		i = 0;
 		c_real = x0 + ((double)(x)) / 1000 * (x1 - x0);
-        c_imag = y1 + ((double)(y)) / 1000 * (y0 - y1);
+        c_imag = y1 + ((double)(y)) / 1200 * (y0 - y1);
         real = 0;
         imag = 0;
         while (i < iteration && (real * real + imag * imag) <= 4)
