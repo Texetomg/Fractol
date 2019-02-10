@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:24:42 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/10 16:09:53 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/10 16:45:18 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,7 @@
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
-# ifdef __APPLE__
 # include <OpenCL/opencl.h>
-# else
-# include <CL/cl.h>
-# endif
 # define WDTH	1200
 # define HGHT	1000
 # define SIZE	WDTH*HGHT*sizeof(int)
@@ -29,8 +25,8 @@
 
 typedef	struct			s_fractal
 {
-	void    			*mlx_ptr;
-	void    			*win_ptr;
+	void				*mlx_ptr;
+	void				*win_ptr;
 	void				*img_ptr;
 	void				*addr_ptr;
 	int					size_line;
@@ -55,7 +51,7 @@ typedef struct			s_kernel
 	cl_context			context;
 	cl_command_queue	command_queue;
 	cl_mem				memobj;
-	cl_program 			program;
+	cl_program			program;
 	cl_kernel			kernel;
 	cl_platform_id		platform_id;
 	cl_uint				ret_num_devices;
@@ -63,10 +59,10 @@ typedef struct			s_kernel
 	cl_int				ret;
 }						t_kernel;
 
-void            		error(char *text);
+void					error(char *text);
 int						mandelbrot(t_fractal *fractal, int x, int y);
 void					drow_img(t_fractal *fractal);
-void     				start_kernel(t_kernel *kernel, t_fractal *fractal);
+void					start_kernel(t_kernel *kernel, t_fractal *fractal);
 void					hook(t_fractal *fractal);
 int						key_press(int key, t_fractal *fractal);
 int						mouse_hook(int key, int x, int y, t_fractal *fractal);
