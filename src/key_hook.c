@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 19:43:29 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/10 20:08:50 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/10 21:32:55 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,10 @@ void	change_fractal(int key, t_fractal *fractal)
 		fractal->name = 'j';
 	if (key == 20)
 		fractal->name = 'b';
+	if (key == 21)
+		fractal->name = 'n';
+	if (key == 23)
+		fractal->name = 's';
 	init_fractal(fractal);
 	mlx_clear_window(fractal->mlx_ptr, fractal->win_ptr);
 	drow_img(fractal);
@@ -101,7 +105,7 @@ int		key_press(int key, t_fractal *fractal)
 		mlx_clear_window(fractal->mlx_ptr, fractal->win_ptr);
 		drow_img(fractal);
 	}
-	if (key == 18 || key == 19 || key == 20)
+	if (key == 18 || key == 19 || key == 20 || key == 21 || key == 23)
 		change_fractal(key, fractal);
 	if (key == 89 || key == 86)
 		change_iter(key, fractal);

@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 15:45:08 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/10 15:49:38 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/10 21:33:59 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	drow_img(t_fractal *fractal)
 	mlx_put_image_to_window(fractal->mlx_ptr, fractal->win_ptr,
 							fractal->img_ptr, 0, 0);
 	mlx_string_put(fractal->mlx_ptr, fractal->win_ptr, 970, 20, 0xFFFFFF,
-					"Select fractals: 1/2/3");
+					"Select fractals: 1-5");
 	mlx_string_put(fractal->mlx_ptr, fractal->win_ptr, 970, 40, 0xFFFFFF,
 					"Move: < > ^ v");
 	mlx_string_put(fractal->mlx_ptr, fractal->win_ptr, 970, 60, 0xFFFFFF,
