@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 19:43:29 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/10 21:32:55 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/10 21:49:16 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ void	change_color(int key, t_fractal *fractal)
 	if (key == 91)
 	{
 		if (fractal->color < 256)
-			fractal->color+=16;
+			fractal->color += 16;
 		else if (fractal->color < 256 * 256)
-			fractal->color+=16 * 256;
+			fractal->color += 16 * 256;
 		else if (fractal->color < 256 * 256 * 256 - 16 * 256 * 256)
-			fractal->color+=16 * 256 * 256;
+			fractal->color += 16 * 256 * 256;
 	}
 	if (key == 87)
 	{

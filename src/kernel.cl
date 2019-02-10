@@ -18,8 +18,6 @@ __kernel void fractals(__global char* string,
 	double	ex_imag;
 	double	real;
 	double	imag;
-	double	dx;
-	double	dy;
 	int		gid;
 	int		color;
 
@@ -89,6 +87,9 @@ __kernel void fractals(__global char* string,
 	}
 	else if (name == 'n')
 	{
+		double	dx;
+		double	dy;
+
 		real = x0 + ((double)(x)) / 1000 * (x1 - x0);
         imag = y1 + ((double)(y)) / 1200 * (y0 - y1);
 		dx = real;
