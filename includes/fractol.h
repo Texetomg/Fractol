@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:24:42 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/08 16:06:11 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/10 16:09:53 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef	struct			s_fractal
 	char				name;
 	int					flag;
 	int					recolor;
+	int					count_scroll;
 }						t_fractal;
 
 typedef struct			s_kernel

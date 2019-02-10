@@ -42,6 +42,8 @@ __kernel void fractals(__global char* string,
 			i++;
 			color = color + recolor;
 		}
+		if (i == iteration)
+			color = 0x000000;
 	}
 	else if (name == 'j')
 	{	
@@ -59,6 +61,8 @@ __kernel void fractals(__global char* string,
 			i++;
 			color = color - recolor;
 		}
+		if (i == iteration)
+			color = 0x000000;
 	}
 	else if (name == 'b')
 	{
@@ -79,6 +83,8 @@ __kernel void fractals(__global char* string,
             i++;
 			color = color - recolor;
         }
+		if (i == iteration)
+			color = 0x000000;
 	}
 	((__global unsigned int*)(string))[gid] = color;
 }

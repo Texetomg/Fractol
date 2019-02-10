@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 14:38:33 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/08 17:16:02 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/10 15:10:36 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	check_ac_av(int ac, char *av)
 {
 	if (ac != 2)
-		error("Usage: <name> [mandelbrot/julia/burningship]\n:");
+		error("Usage: <name> [mandelbrot/julia/burningship]");
 	if (ft_strcmp(av, "mandelbrot") != 0 && ft_strcmp(av, "julia") != 0
 	&& ft_strcmp(av, "burningship") != 0)
-		error("Usage: <name> [mandelbrot/julia/burningship]\n");
+		error("Usage: <name> [mandelbrot/julia/burningship]");
 }
 
 void	window_init(char *av)
