@@ -1,4 +1,3 @@
-
 __kernel void fractals(__global char* string,
 								double x0,
 								double y0,
@@ -7,8 +6,8 @@ __kernel void fractals(__global char* string,
 								char name,
 								double x_coord,
 								double y_coord,
-								int recolor,
-								int iteration)
+								int iteration,
+								int ft_color)
 {  
     int 	x;
     int 	y;
@@ -19,13 +18,14 @@ __kernel void fractals(__global char* string,
 	double	ex_imag;
 	double	real;
 	double	imag;
-	int		color;
 	int		gid;
+	int		n;
+	int		color;
 
+	color = 0;
 	gid = get_global_id(0);
 	x = gid % 1200;
 	y = gid / 1000;
-	color = 0xFFFFFF;
 	if (name == 'm')
 	{
 		i = 0;
@@ -40,10 +40,11 @@ __kernel void fractals(__global char* string,
 			real = ex_real;
 			imag = ex_imag;
 			i++;
-			color = color + recolor;
+			color = color + ft_color;
 		}
 		if (i == iteration)
 			color = 0x000000;
+		n = 50;
 	}
 	else if (name == 'j')
 	{	
@@ -59,10 +60,11 @@ __kernel void fractals(__global char* string,
             real = ex_real;
 			imag = ex_imag;
 			i++;
-			color = color - recolor;
+			color = color;
 		}
 		if (i == iteration)
 			color = 0x000000;
+		n = 9;
 	}
 	else if (name == 'b')
 	{
@@ -81,10 +83,11 @@ __kernel void fractals(__global char* string,
             real = ex_real;
             imag = ex_imag;
             i++;
-			color = color - recolor;
+			color = color;
         }
 		if (i == iteration)
 			color = 0x000000;
+		n = 30;
 	}
 	((__global unsigned int*)(string))[gid] = color;
 }

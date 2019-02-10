@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 15:55:39 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/10 16:10:07 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/10 20:09:36 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	init_fractal(t_fractal *fractal)
 	fractal->x_coord = 0;
 	fractal->y_coord = 0;
 	fractal->flag = 0;
-	fractal->recolor = 10;
-	fractal->iteration = 350;
+	fractal->color = 16;
+	fractal->iteration = 150;
 	fractal->count_scroll = 0;
 }
 

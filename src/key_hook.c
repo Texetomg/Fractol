@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 19:43:29 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/08 16:05:49 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/10 20:08:50 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,27 @@ void	change_iter(int key, t_fractal *fractal)
 void	change_color(int key, t_fractal *fractal)
 {
 	if (key == 91)
-		fractal->recolor = fractal->recolor + 5000;
+	{
+		if (fractal->color < 256)
+			fractal->color+=16;
+		else if (fractal->color < 256 * 256)
+			fractal->color+=16 * 256;
+		else if (fractal->color < 256 * 256 * 256 - 16 * 256 * 256)
+			fractal->color+=16 * 256 * 256;
+	}
 	if (key == 87)
-		fractal->recolor = fractal->recolor - 5000;
+	{
+		if (fractal->color > 16 * 256 * 256)
+			fractal->color -= 16 * 256 * 256;
+		else if (fractal->color == 16 * 256 * 256)
+			fractal->color -= 16 * 256 * 256 - (256 - 16) * 256;
+		else if (fractal->color > 16 * 256)
+			fractal->color -= 16 * 256;
+		else if (fractal->color == 16 * 256)
+			fractal->color -= 16 * 256 - 16;
+		else if (fractal->color > 16)
+			fractal->color -= 16;
+	}
 	mlx_clear_window(fractal->mlx_ptr, fractal->win_ptr);
 	drow_img(fractal);
 }
