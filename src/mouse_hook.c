@@ -6,7 +6,7 @@
 /*   By: bfalmer- <bfalmer-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 19:42:07 by bfalmer-          #+#    #+#             */
-/*   Updated: 2019/02/10 16:24:41 by bfalmer-         ###   ########.fr       */
+/*   Updated: 2019/02/11 15:44:14 by bfalmer-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 void	mouse_scroll(int key, int x, int y, t_fractal *fractal)
 {
-	double	x0;
-	double	y0;
-	double	x1;
-	double	y1;
+	double		x0;
+	double		y0;
+	double		x1;
+	double		y1;
 
 	x0 = (fractal->x1 - fractal->x0) * ((double)(x) / 10000);
 	x1 = (fractal->x1 - fractal->x0) * ((double)(1000 - x) / 10000);
 	y0 = (fractal->y0 - fractal->y1) * ((double)(1000 - y) / 10000);
 	y1 = (fractal->y0 - fractal->y1) * ((double)(y) / 10000);
-	if (key == 5 && fractal->count_scroll < 300)
+	if (key == 5 && fractal->count_scroll < 600)
 	{
 		fractal->count_scroll++;
 		fractal->x0 = fractal->x0 + x0;
